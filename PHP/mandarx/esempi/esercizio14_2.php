@@ -73,7 +73,7 @@ function creaVerso($soggetti, $verbi, $oggetti, $chiusure)
     return $verso . ".";
 }
 
-define("NUMERO_VERSI", 4);
+define("NUMERO_VERSI", );
 $poema = [];
 
 for ($i = 0; $i < NUMERO_VERSI; $i++)

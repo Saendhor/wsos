@@ -120,7 +120,7 @@
     echo "<br><br>";
 
 
-        // array_merge()
+    // array_merge()
     echo "<h3>array_merge()</h3>";
 
     $arr1 = ["rosso", "verde"];
@@ -140,7 +140,7 @@
     echo "<br><br>";
 
 
-        // array_merge() con array associativi
+    // array_merge() con array associativi
     echo "<h3>array_merge() con array associativi</h3>";
 
     $arr1 = ["colore" => "rosso", "forma" => "cerchio"];
@@ -180,7 +180,7 @@
     echo "</pre>";
     echo "<br><br>";
 
-        // array_splice()
+    // array_splice()
     echo "<h3>array_splice()</h3>";
 
     $frutta = ["Mela", "Banana", "Ciliegia", "Arancia"];

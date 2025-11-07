@@ -19,7 +19,7 @@
         ],
         'WebKit' =>
         [
-            'bg' => '#FFFACD',
+            'bg' => '#FFFA00',
             'text' => '#666600',
         ],
         'Trident' =>
@@ -61,7 +61,7 @@
         'en' => 'Welcome to our website!',
         'es' => '¡Bienvenido a nuestro sitio web!',
         'fr' => 'Bienvenue sur notre site web !',
-        'de' => 'Willkommen auf unserer Website!'
+        'de' => 'Willkommen auf unserer Website!',
     ];
 
     function getEngine()
@@ -75,7 +75,7 @@
             'Presto' => 'Presto', // Opera <= v12
 
             'Blink' => 'Blink', // Chrome, Edge, Brave
-            'WebKit' => 'WebKit', // Safari, iOS WebView
+            'WebKit' => 'WebKit', // Safari, Chrome
 
             'EdgeHTML' => 'Trident', // vecchio Edge
             'Trident' => 'Trident', // Internet Explorer
@@ -118,8 +118,6 @@
         }
         return 'NN';
     }
-
-
 
     function getLanguage()
     {

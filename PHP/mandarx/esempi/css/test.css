@@ -2,4 +2,6 @@ body
 {
     background-color: <?php echo $coloreSfondo; ?>;
     color: <?php echo $coloreTesto; ?>;
+    text-align: center;
+    font-family: Arial, sans-serif;
 }

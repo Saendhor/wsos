@@ -74,7 +74,7 @@ $personaggio =
     ]
 ];
 
-// output
+// Output
 echo "<h2>Personaggio Casuale di Dungeons & Dragons</h2>";
 
 echo "<p><strong>Nome:</strong> {$personaggio['Nome']}<br>";

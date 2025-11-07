@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Exercise: Dynamic Personalization with css</title>
-    <?php
+    <title>Exercise: Dynamic Personalization</title>
+    <style>
+        :root
+        {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        body
+        {
+             /* Le variabili CSS devono iniziare con -- per essere riconosciute come custom properties */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+    </style>
+
+</head>
+<body>
+
+<?php
     #firefox about:config general.useragent.override intl.accept_languages
 
     define("DEBUG", 0);
 
-    $cssEngine =
+    $coloriEngine =
     [
-        'Gecko' => 'gecko.css',
-        'WebKit' => 'webkit.css',
-        'Trident' => 'trident.css',
-        'Presto' => 'presto.css',
-        'Blink' => 'blink.css',
-        'NN' => 'default.css',
+        'Gecko' => ['bg' => '#FFEFD5', 'text' => '#663300'],
+        'WebKit' => ['bg' => '#FFFACD', 'text' => '#666600'],
+        'Trident' => ['bg' => '#000000', 'text' => '#FF0000'],
+        'Presto' => ['bg' => '#FFE4E1', 'text' => '#660000'],
+        'Blink' => ['bg' => '#52b8e8ff', 'text' => '#c924d8ff'],
+        'NN' => ['bg' => '#FFFFFF', 'text' => '#000000'],
     ];
 
     $immaginiOS =
-        [
+    [
         'macOS' => 'ma.png',
         'Linux' => 'li.png',
         'Windows' => 'wi.png',
@@ -27,13 +47,14 @@
         'NN' => 'nn.png',
     ];
 
+    // messaggi di benvenuto in base alla lingua
     $messaggi =
     [
         'it' => 'Benvenuto nel nostro sito!',
         'en' => 'Welcome to our website!',
         'es' => '¡Bienvenido a nuestro sitio web!',
         'fr' => 'Bienvenue sur notre site web !',
-        'de' => 'Willkommen auf unserer Website!',
+        'de' => 'Willkommen auf unserer Website!'
     ];
 
     function getEngine()
@@ -42,7 +63,7 @@
 
         // mappa dei principali motori di rendering
         $engines =
-            [
+        [
             'OPR' => 'Blink', // Opera moderno
             'Presto' => 'Presto', // Opera <= v12
 
@@ -51,8 +72,8 @@
 
             'EdgeHTML' => 'Trident', // vecchio Edge
             'Trident' => 'Trident', // Internet Explorer
-
-            'Gecko' => 'Gecko', // Firefox, Netscape
+            
+            'Gecko' => 'Gecko', // Firefox, Netscape            
         ];
 
         foreach ($engines as $key => $value)
@@ -71,7 +92,7 @@
         $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? "";
 
         $osMap =
-            [
+        [
             'Mac OS X' => 'macOS',
             'Linux' => 'Linux',
             'Windows NT 10' => 'Windows',
@@ -91,6 +112,8 @@
         return 'NN';
     }
 
+
+
     function getLanguage()
     {
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
@@ -101,19 +124,16 @@
     }
 
     $browser = getEngine();
-    $cssFile = $cssEngine[$browser] ?? $cssByEngine['NN'];
-    ?>
-    <link rel="stylesheet" href="css/<?php echo $cssFile; ?>">
-
-<body>
-
-<?php
     $os = getOS();
     $lang = getLanguage();
 
+    $coloreSfondo = $coloriEngine[$browser]['bg'];
+    $coloreTesto = $coloriEngine[$browser]['text'];
     $messaggio = $messaggi[$lang];
     $immagine = $immaginiOS[$os];
 
+    // genera CSS dinamico
+    echo "<style>:root {--bg-color: $coloreSfondo; --text-color: $coloreTesto;}</style>";
     echo "<body>";
     echo "<h2>$messaggio</h2>";
     echo "<img src='imgs/$immagine' alt='$os' style='width:150px; margin-top:20px;'><br>";

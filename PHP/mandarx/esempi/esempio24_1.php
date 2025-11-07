@@ -10,6 +10,9 @@
         $username = "username";
         $password = "password";
 
+        //error_reporting(0); // disattiva la segnalazione di tutti gli errori PHP
+        //mysqli_report(MYSQLI_REPORT_OFF); // disabilita le eccezioni e i messaggi di errore generati da MySQLi
+
         // Crea la connessione
         $conn = new mysqli($servername, $username, $password);
 
@@ -21,26 +24,6 @@
         echo "Connessione effettuata";
 
         echo "<BR>";
-        /*
-        //alterantiva
-        try
-        {
-            $conn = @new mysqli($servername, $username, $password);
-
-            if ($conn->connect_errno) //numero dell’errore
-            {
-                echo "Connessione fallita: " . $conn->connect_error;
-            }
-            else
-            {
-                echo "Connessione effettuata.";
-            }
-        }
-        catch (Exception $e)
-        {
-            echo "Errore durante la connessione: " . $e->getMessage();
-        }
-        */
     ?>
 </body>
 </html>

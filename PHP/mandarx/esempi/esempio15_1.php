@@ -94,7 +94,7 @@
     rsort($tmp);
     print_r($tmp);
     echo "<br>";
-
+    
     // natsort() - ordinamento naturale (alfanumerico, distingue maiuscole/minuscole)
     $files = ["img12.png", "img10.png", "IMG2.png", "img1.png"];
     echo "<h3>natsort() - ordine naturale</h3>";

@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Creatig DBs with MySql</title>
+    <title>Connection with MySql</title>
 </head>
 <body>
-    <h3>Creazione di un database con Mysql:</h3>
+    <h3>Connessione con MySql:</h3>
     <?php
         $servername = "localhost";
         $username = "username";
         $password = "password";
-        $dbname = "myDB";
 
-        $conn = new mysqli($servername, $username, $password);
-
-        if ($conn->connect_error)
+        try
         {
-            die("Connessione fallita: " . $conn->connect_error);
+            $conn = @new mysqli($servername, $username, $password);
+            // l’operatore @ in PHP sopprime la visualizzazione di errori e avvisi generati da quell’istruzione.
+            
+            if ($conn->connect_errno) //numero dell’errore
+            {
+                die ("Connessione fallita: " . $conn->connect_error);
+            }
+            else
+            {
+                echo "Connessione effettuata.";
+            }
         }
-        echo "Connessione effettuata";
-
-        echo "<BR>";
-        
-        // Crea un database
-        $sql = "CREATE DATABASE $dbname";
-        if ($conn->query($sql) === true)
+        catch (Exception $e)
         {
-            echo "Database creato";
+            die ("Errore durante la connessione: " . $e->getMessage());
         }
-        else
-        {
-            echo "Errore: " . $conn->error;
-        }
-
-        $conn->close(); //rilascia la connessione
-
     ?>
 </body>
 </html>

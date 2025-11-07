@@ -1,24 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Exercise: Dynamic Personalization</title>
-    <style>
-        :root
-        {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-        }
-
-        body
-        {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-        }
-    </style>
-
-</head>
-<body>
-
 <?php
     #firefox about:config general.useragent.override intl.accept_languages
 
@@ -51,7 +33,7 @@
         'en' => 'Welcome to our website!',
         'es' => '¡Bienvenido a nuestro sitio web!',
         'fr' => 'Bienvenue sur notre site web !',
-        'de' => 'Willkommen auf unserer Website!'
+        'de' => 'Willkommen auf unserer Website!',
     ];
 
     function getEngine()
@@ -60,7 +42,7 @@
 
         // mappa dei principali motori di rendering
         $engines =
-        [
+            [
             'OPR' => 'Blink', // Opera moderno
             'Presto' => 'Presto', // Opera <= v12
 
@@ -69,8 +51,8 @@
 
             'EdgeHTML' => 'Trident', // vecchio Edge
             'Trident' => 'Trident', // Internet Explorer
-            
-            'Gecko' => 'Gecko', // Firefox, Netscape            
+
+            'Gecko' => 'Gecko', // Firefox, Netscape
         ];
 
         foreach ($engines as $key => $value)
@@ -89,7 +71,7 @@
         $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? "";
 
         $osMap =
-        [
+            [
             'Mac OS X' => 'macOS',
             'Linux' => 'Linux',
             'Windows NT 10' => 'Windows',
@@ -109,8 +91,6 @@
         return 'NN';
     }
 
-
-
     function getLanguage()
     {
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']))
@@ -126,13 +106,26 @@
 
     $coloreSfondo = $coloriEngine[$browser]['bg'];
     $coloreTesto = $coloriEngine[$browser]['text'];
+?>
+    <title>Exercise: Dynamic Personalization</title>
+    <style>
+        body
+        {
+            background-color: <?= $coloreSfondo ?>;
+            color: <?= $coloreTesto ?>;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+
+</head>
+<body>
+
+<?php
     $messaggio = $messaggi[$lang];
     $immagine = $immaginiOS[$os];
 
-    // genera CSS dinamico
-    echo "<style>:root {--bg-color: $coloreSfondo;--text-color: $coloreTesto;}</style>";
-
-    echo "<body style='background-color: $coloreSfondo; color: $coloreTesto; text-align: center; font-family: Arial, sans-serif;'>";
+    echo "<body>\n";
     echo "<h2>$messaggio</h2>";
     echo "<img src='imgs/$immagine' alt='$os' style='width:150px; margin-top:20px;'><br>";
     echo "<img src='imgs/$lang.jpg' alt='$lang' style='margin-top:20px;'><br>";

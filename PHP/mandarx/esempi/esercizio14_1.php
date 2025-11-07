@@ -8,9 +8,9 @@
 <?php
 // Simulazione di lancio di dadi con istogramma
 
-define("NUMERO_DADI", 5);       // quanti dadi si lanciano per volta
+define("NUMERO_DADI", 100);       // quanti dadi si lanciano per volta
 define("FACCE_DADO", 4);        // numero di facce di ogni dado
-define("NUMERO_LANCI", 100);     // numero totale di lanci da simulare
+define("NUMERO_LANCI", 5000);     // numero totale di lanci da simulare
 define("STAMPA_PASSI", 0);
 
 echo "<h3>Lancio " . NUMERO_LANCI . " volte " . NUMERO_DADI . " dadi a " . FACCE_DADO . " facce</h3>";
