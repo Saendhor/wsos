@@ -56,7 +56,6 @@
         echo "You won! Congratulations! Play again?<br> <a href = \"guessNumber.php\"> Try your luck! </a>";
     } else {
         echo "Nooo! You lost. Play again?<br> <a href = \"guessNumber.php\"> Try your luck! </a>";
-
     }
 
 ?>
