@@ -49,6 +49,6 @@
     }
 
     echo "$stringToGenerate.<br>";
-    echo '<a href = "poetrySimulator.php"> Generate new sentence!</a>';
+    echo '<a href = "$_SERVER[PHP_SELF]"> Generate new sentence!</a>';
 
 ?>
