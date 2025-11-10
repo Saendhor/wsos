@@ -4,6 +4,7 @@
     Dopo ogni lancio, o al termine della simulazione, il programma deve mostrare un istogramma testuale
     che rappresenti la frequenza di ciascun risultato ottenuto.
 */
+    define("DEBUG", false);
 
     $diceType = [
         0 => 4,
@@ -19,31 +20,51 @@
     echo "The extracted dice is a d$selectedDice<br>";
 
     //Computer choses how many times to throw the dice
-    $rollDice = rand(1, 10);
+    $rollDice = rand(1, 3);
     echo "Per each dice, we're going to roll it $rollDice times<br>";
 
     //Computer choses how many instances of roll there are
     $tentatives = rand(10,30);
     echo "This game is going to have $tentatives tentatives<br>";
 
-    //Where the computer is going to store how many times a given value has
-    //been rolled
-    $minRolls = $selectedDice;
-    $maxRolls = $selectedDice * $rollDice;
-    $rolls = range($minRolls, $maxRolls);
-    echo "Given the previous parameters, our outcome range is from $minRolls to $maxRolls<br><br>";
-
-    for ($i = 0; $i < $tentatives; $i++) {
-        //Throw the dice
-        for ($j = 0; $j < $rollDice; $j++) {
+    $minValue = $rollDice * 1;
+    $maxValue = $rollDice * $selectedDice;
+    echo "With the given parameters, our range is going to be between $minValue and $maxValue<br><br>";
+    
+    $values[$maxValue];
+    for ($i = 0; $i < $maxValue; $i++) {
+        $values[$i] = 0;
+        if (DEBUG) {
+            echo "$i, $values[$i]<br>";
+        }
+    }
+    //Throwing the dice
+    for ($t = 0; $t < $tentatives; $t++) {
+        //Variable storing the result of the thrown dices
+        $result = 0;
+        for ($r = 0; $r < $rollDice; $r++) {
             $result += rand(1, $selectedDice);
         }
-        echo "On tentative $i, we got a value of $result<br>";
-        //Update the rolls array to later display the outcomes
-        $rolls[$result]++;
-        $result = 0;
-
-
+        echo "Result for tentative $t is $result<br>";
+        $values[$result - 1]++; // $result - 1 because the array starts at 0
     }
 
+    if (DEBUG) {
+        echo "<br>";
+        for ($i = 0; $i < $maxValue; $i++) {
+            $slot = $i + 1;
+            echo "$slot: $values[$i]<br>";
+        }
+    }
+
+    for ($s = 0; $s < $maxValue; $s++) {
+        $slotToPrint = $s + 1;
+        echo "$slotToPrint: ";
+        while ($values[$s] > 0) {
+            echo "*";
+            //Decrements the occurrence of the already printed item
+            $values[$s]--;
+        }
+        echo "<br>";
+    }
 ?>
