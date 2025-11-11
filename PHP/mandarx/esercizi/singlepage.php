@@ -2,7 +2,7 @@
 //CRUD
 
 define("DEBUG", true);
-$conn = new mysqli("localhost", "username", "password", "MyDB");
+$conn = new mysqli("localhost", "user", "password", "myDatabase");
 
 //metodo get?
 if($_SERVER['REQUEST_METHOD'] == "GET") {
