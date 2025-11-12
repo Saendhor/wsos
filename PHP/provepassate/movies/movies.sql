@@ -1,8 +1,8 @@
 -- Create the database
-CREATE DATABASE IF NOT EXISTS exam;
+--CREATE DATABASE IF NOT EXISTS exam;
 
 -- Use 'exam' database
-USE exam;
+USE myDatabase;
 
 -- Create 'movies' table if it does not exist
 DROP TABLE IF EXISTS movies;
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS movies (
 );
 
 -- Insert the items in the table
-INSERT INTO movies (title, directod, year, duration_minutes, genre) VALUES
+INSERT INTO movies (title, director, year, duration_minutes, genre) VALUES
 ('Avatar - La via dell acqua', 'James Cameron', 2022, 192, 'Fantascienza'),
 ('Joker', 'Todd Phillips', 2019, 122, 'Dramma'),
 ('La grande bellezza', 'Paolo Sorrentino', 2013, 141, 'Dramma'),
