@@ -79,6 +79,8 @@
                 break;
                 
             case 'create':
+                //Text form where you can input the values you want to insert and
+                //call a supplementary function 'confirmCreate' in which you add a new record
                 echo "<form action = '" . $_SERVER['PHP_SELF'] ."' method = 'POST'>";
                 echo "<input type = 'text' name = 'title' value = 'new title'>";
                 echo "<input type = 'text' name = 'director' value = 'new director'>";
@@ -91,6 +93,8 @@
             
             case 'confirmCreate':
                 //Take the parameters from user form
+                //Observe the items we're looking for in the $_POST[]
+                //are the parameters in the name parameter in the form
                 $new_title = $_POST["title"] ?? "";
                 $new_director = $_POST['director'] ?? "";
                 $new_year = $_POST['year'] ?? "";
