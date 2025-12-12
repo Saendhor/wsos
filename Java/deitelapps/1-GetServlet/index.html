@@ -1,0 +1,22 @@
+<!-- Fig. 19.6: HTTPGetServlet.html -->
+<!-- Questo era il nome sul libro, ora e` index.html -->
+
+<HTML>
+   <HEAD>
+      <TITLE>
+         Servlet HTTP GET Example
+      </TITLE>
+   </HEAD>
+   <BODY>
+   <!--
+    <FORM ACTION="http://localhost:8080/servlet/HTTPGetServlet" METHOD=GET>
+    -->
+    <!-- Meglio omettere host, per portabilita` nel deploy, se 
+        questa pagina e la servlet sono sullo stesso host -->
+   <FORM ACTION="./GetServlet" METHOD="GET">
+         <P>Click the button to have the servlet send
+            an HTML document</P>
+         <INPUT TYPE="submit" VALUE="Get HTML Document">
+      </FORM>
+   </BODY>
+</HTML>

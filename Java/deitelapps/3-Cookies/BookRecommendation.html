@@ -1,0 +1,19 @@
+<!-- Fig. 19.11: BookRecommendation.html -->
+<HTML>
+<HEAD> 
+   <TITLE>Cookies: Book Recommendation</TITLE> 
+</HEAD>
+<BODY>
+<!--   <FORM ACTION="http://localhost:8080/servlet/Cookies"
+         METHOD="GET">
+-->
+   <!-- Meglio omettere host, per portabilita` nel deploy, specie se 
+        questa pagina e la servlet sono sullo stesso host -->
+      <FORM ACTION="./Cookies" METHOD="GET">
+      <!-- ACTION parla con la servlet, metodo doGet()-->
+         
+      Press "Recommend books" for a list of books.
+      <INPUT TYPE=submit VALUE="Recommend books">
+   </FORM>
+</BODY>
+</HTML>

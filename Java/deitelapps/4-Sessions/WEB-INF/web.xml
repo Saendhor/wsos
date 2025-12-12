@@ -1,0 +1,13 @@
+<!-- web.xml -->
+
+<web-app>
+  <servlet>
+    <servlet-class>SessionExample</servlet-class>
+    <servlet-name>SessionExample</servlet-name>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SessionExample</servlet-name>
+    <url-pattern>/Sessions</url-pattern>
+  </servlet-mapping>
+</web-app>
+

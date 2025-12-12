@@ -1,0 +1,13 @@
+<!-- web.xml -->
+
+<web-app>
+  <servlet>
+    <servlet-class>HTTPGetFormServlet</servlet-class>
+    <servlet-name>HTTPGetFormServlet</servlet-name>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HTTPGetFormServlet</servlet-name>
+    <url-pattern>/GetFormServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
+

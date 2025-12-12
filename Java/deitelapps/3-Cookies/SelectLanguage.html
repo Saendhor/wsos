@@ -1,0 +1,30 @@
+<!-- Fig. 19.10: SelectLanguage.html -->
+<HTML>
+<HEAD>
+   <TITLE>Cookies: Select Language</TITLE> 
+</HEAD>
+<BODY>
+      <a href="./BookRecommendation.html">Testi raccomandati</a><hr>
+<!--   <FORM ACTION="http://localhost:8080/servlet/Cookies"
+         METHOD="POST">  
+-->
+    <!-- Meglio omettere host, per portabilita` nel deploy, se 
+        questa pagina e la servlet sono sullo stesso host -->
+      <FORM ACTION="./Cookies" METHOD="POST"> 
+      <!-- ACTION parla con la servlet Cookies, metodo doPost() --> 
+      <STRONG>Select a programming language:<br>
+      </STRONG><BR>
+      <PRE>
+      <INPUT TYPE="radio" NAME="lang" VALUE="C">C<BR>
+      <INPUT TYPE="radio" NAME="lang" VALUE="C++">C++<BR>
+      <INPUT TYPE="radio" NAME="lang" VALUE="Java" 
+             CHECKED>Java<BR>
+      <INPUT TYPE="radio" NAME="lang"
+             VALUE="Visual_Basic_6">Visual Basic 6
+      </PRE>
+      <INPUT TYPE="submit" VALUE="Submit">
+      <INPUT TYPE="reset"> </P>
+   </FORM>
+ 
+</BODY>
+</HTML>

@@ -1,0 +1,13 @@
+<!-- web.xml -->
+
+<web-app>
+  <servlet>
+    <servlet-class>CookieExample</servlet-class>
+    <servlet-name>CookieExample</servlet-name>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CookieExample</servlet-name>
+    <url-pattern>/Cookies</url-pattern>
+  </servlet-mapping>
+</web-app>
+

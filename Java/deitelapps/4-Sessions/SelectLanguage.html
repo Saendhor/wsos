@@ -1,0 +1,29 @@
+<!-- Fig. 19.14: SelectLanguage.html -->
+<HTML>
+<HEAD>
+   <TITLE>Sessions</TITLE> 
+</HEAD>
+<BODY>
+<!--
+   <FORM ACTION="http://localhost:8080/servlet/SessionExample"
+         METHOD="POST">
+-->
+      <!-- Meglio omettere host, per portabilita` nel deploy, se 
+        questa pagina e la servlet sono sullo stesso host -->
+   <FORM ACTION="./Sessions"
+         METHOD="POST"> 
+      <STRONG>Select a programming language:<br>
+      </STRONG><BR>
+      <PRE>
+      <INPUT TYPE="radio" NAME="lang" VALUE="C">C<BR>
+      <INPUT TYPE="radio" NAME="lang" VALUE="C++">C++<BR>
+      <INPUT TYPE="radio" NAME="lang" VALUE="Java" 
+             CHECKED>Java<BR>
+      <INPUT TYPE="radio" NAME="lang" 
+             VALUE="Visual Basic 6">Visual Basic 6
+      </PRE>
+      <INPUT TYPE="submit" VALUE="Submit">
+      <INPUT TYPE="reset"> </P>
+   </FORM>
+</BODY>
+</HTML>

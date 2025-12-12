@@ -1,0 +1,19 @@
+<!-- Fig. 19.15: BookRecommendation.html -->
+<HTML>
+<HEAD> 
+   <TITLE>Sessions</TITLE> 
+</HEAD>
+<BODY>
+<!--   <FORM ACTION="http://localhost:8080/servlet/SessionExample"
+         METHOD="GET">
+-->
+   <!-- Meglio omettere host, per portabilita` nel deploy, specie se 
+        questa pagina e la servlet sono sullo stesso host -->
+    <FORM ACTION="./Sessions" METHOD="GET">
+        <!-- ACTION parla con la servlet, metodo doGet()-->
+
+        Press "Recommend books" for a list of books.
+        <INPUT TYPE=submit VALUE="Recommend books">
+    </FORM>
+</BODY>
+</HTML>
