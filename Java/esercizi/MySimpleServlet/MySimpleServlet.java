@@ -3,7 +3,7 @@ import jakarta.servlet.http.*;
 import java.io.*;
 
 public class MySimpleServlet extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletRequest response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //select the content type to respond
         response.setContentType("text/html");
 
