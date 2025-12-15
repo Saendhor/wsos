@@ -1,0 +1,15 @@
++----+-------------------------------------+--------------------------+------+------------------+--------------+
+| id | title                               | director                 | year | duration_minutes | genre        |
++----+-------------------------------------+--------------------------+------+------------------+--------------+
+|  1 | Avatar - La via dell acqua          | James Cameron            | 2022 |              192 | Fantascienza |
+|  2 | Joker                               | Todd Phillips            | 2019 |              122 | Dramma       |
+|  3 | La grande bellezza                  | Paolo Sorrentino         | 2013 |              141 | Dramma       |
+|  4 | Chiamami col tuo nome               | Luca Guadagnino          | 2017 |              132 | Romantico    |
+|  5 | Il capitale umano                   | Paolo Virzi              | 2013 |              111 | Dramma       |
+|  6 | Quo vado?                           | Gennaro Nunziante        | 2016 |               86 | Commedia     |
+|  7 | Avengers: Endgame                   | Anthony Russo, Joe Russo | 2019 |              181 | Azione       |
+|  8 | La vita è bella                     | Roberto Benigni          | 1997 |              116 | Dramma       |
+|  9 | Frozen II - Il segreto di Arendelle | Jennifer Lee, Chris Buck | 2019 |              103 | Animazione   |
+| 10 | La famiglia Bélier                  | Èric Lartigau            | 2014 |              105 | Commedia     |
++----+-------------------------------------+--------------------------+------+------------------+--------------+
+
