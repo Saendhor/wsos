@@ -1,74 +1,90 @@
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.*;
+import java.sql.*;
 
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.*;
+import jakarta.servlet.http.*;
 
-@WebServlet("/MovieCatalogue")
+@WebServlet(urlPatterns = "/MovieCatalogue")
 public class MovieCatalogue extends HttpServlet {
-    int DEBUG = -1; //True (1) or False (0)
+    //Class constant
+    static final boolean DEBUG = true;
+    //myDatabase is my database in use
+    //change that to your used database
+    //user = <myusername>
+    //password = <mypassword>
+    /*
+    private static final String CONNECTION = 
+    "jdbc:mariadb://localhost:3306/myDatabase?user=user&password=password";
+    */
+   private static final String URL = "jdbc:mariadb://localhost:3306/myDatabase";
+   private static final String USERNAME = "user";
+   private static final String PASSWORD = "password";
 
-    //Preparing connection
-    Connection connection;
-    //static final String CONNECTION = "jdbc:mariadb://localhost:8080/myDatabase?user=user&password=password";
-    static final String URL = "jdbc:mariadb://localhost/myDatabase";
-    static final String USERNAME = "user";
-    static final String PASSWORD = "password";
+    //Class attributes
+    private static Connection connection;
+    private static PrintWriter out;
+    //private static Statement stmt;
+    //private static ResultSet result;
 
-    //Enstablish connection
-    @Override
-    public void init() {
+    //Attempt connection to database
+    //if fails it prints the stack trace, hence the SQLException e
+    private static int initConnection() {
         try {
+            //Class.forName("org.mariadb.jdbc.Driver");
             //connection = DriverManager.getConnection(CONNECTION);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            DEBUG = 1;
-
+            if (DEBUG) {
+                //Takes for granted it has been assigned
+                out.println("Connection successfully enstablished!");
+                out.println("<br>");
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
-    //Get Method for index.html
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        //Setup the page that will display the contents
-        PrintWriter out;
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
         out = response.getWriter();
 
-        if (DEBUG > 0) {
-            out.println("Connection to database was successful!");
+        //Enstablish connection
+        if (initConnection() != 0) {
+            out.println("Error while enstablishing connection");
+            out.println("<br>");
         }
 
-        //Compose the query
+        //Perform query on database
+        //current table: movies
         String query = "SELECT * FROM movies;";
+        try (Statement stmt = connection.createStatement();
+             ResultSet result = stmt.executeQuery(query);) {
+            out.println("Movie catalogue:");
+            out.println("<br>");
 
-        //Start printing something on screen
-        try (Statement stmt = connection.createStatement(); ResultSet result = stmt.executeQuery(query)) {
-            //id | title | director | year | duration_minutes | genre
-            out.println("Movie catalogue <br>id | title | director | year | duration_minutes | genre <br>");
+            //Print items in database
             while (result.next()) {
-                out.println(result.getString("id") + " " +
-                    result.getString("title") + " " +
-                    result.getString("directior") + " " +
-                    result.getString("year") + " " +
-                    result.getString("duration (mins)") + " " +
-                    result.getString("genre"));
-                
+                //| id | title | director | year | duration_minutes | genre |
+                out.println(result.getString("id"));
+                out.println(result.getString("title"));
+                out.println(result.getString("director"));
+                out.println(result.getString("year"));
+                out.println(result.getString("duration_minutes"));
+                out.println(result.getString("genre"));
+
+                //add Update and Delete form
+
                 out.println("<br>");
+
+                //add Create form
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
+    }
 }
