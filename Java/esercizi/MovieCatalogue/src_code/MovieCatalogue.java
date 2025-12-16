@@ -13,13 +13,8 @@ public class MovieCatalogue extends HttpServlet {
     //change that to your used database
     //user = <myusername>
     //password = <mypassword>
-    /*
     private static final String CONNECTION = 
     "jdbc:mariadb://localhost:3306/myDatabase?user=user&password=password";
-    */
-   private static final String URL = "jdbc:mariadb://localhost:3306/myDatabase";
-   private static final String USERNAME = "user";
-   private static final String PASSWORD = "password";
 
     //Class attributes
     private static Connection connection;
@@ -29,33 +24,19 @@ public class MovieCatalogue extends HttpServlet {
 
     //Attempt connection to database
     //if fails it prints the stack trace, hence the SQLException e
-    private static int initConnection() {
-        try {
-            //Class.forName("org.mariadb.jdbc.Driver");
-            //connection = DriverManager.getConnection(CONNECTION);
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            if (DEBUG) {
-                //Takes for granted it has been assigned
-                out.println("Connection successfully enstablished!");
-                out.println("<br>");
-            }
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
         out = response.getWriter();
 
         //Enstablish connection
-        if (initConnection() != 0) {
-            out.println("Error while enstablishing connection");
-            out.println("<br>");
+        try {
+            connection = DriverManager.getConnection(CONNECTION);
+
+        } catch(SQLException e) {
+            e.printStackTrace();
         }
+        
 
         //Perform query on database
         //current table: movies
