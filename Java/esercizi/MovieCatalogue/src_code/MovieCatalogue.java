@@ -1,6 +1,8 @@
 import java.io.*;
 import java.sql.*;
 
+import java.util.Enumeration;
+
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.*;
@@ -8,7 +10,7 @@ import jakarta.servlet.http.*;
 @WebServlet(urlPatterns = "/MovieCatalogue")
 public class MovieCatalogue extends HttpServlet {
     //Class constant
-    static final boolean DEBUG = true;
+    public static final boolean DEBUG = true;
     //myDatabase is my database in use
     //change that to your used database
     //user = <myusername>
@@ -31,41 +33,57 @@ public class MovieCatalogue extends HttpServlet {
 
         //Enstablish connection
         try {
+            //out.println("Testiamo se il try è una brava persona <br>");
+            if (DEBUG) {
+                out.println("DEBUG MODE PRINT<br>");
+                //Retrieving the list of all the Drivers
+                Enumeration<Driver> enumList = DriverManager.getDrivers();
+                //Printing the list
+                while(enumList.hasMoreElements()) {
+                    out.println(enumList.nextElement().getClass());
+                }
+            }
             connection = DriverManager.getConnection(CONNECTION);
-
         } catch(SQLException e) {
             e.printStackTrace();
         }
-        
 
         //Perform query on database
-        //current table: movies
+        //current table: moviesjdbc:mysql://localhost:3306/mydatabase.
         String query = "SELECT * FROM movies;";
-        try (Statement stmt = connection.createStatement();
-             ResultSet result = stmt.executeQuery(query);) {
-            out.println("Movie catalogue:");
-            out.println("<br>");
 
-            //Print items in database
-            while (result.next()) {
-                //| id | title | director | year | duration_minutes | genre |
-                out.println(result.getString("id"));
-                out.println(result.getString("title"));
-                out.println(result.getString("director"));
-                out.println(result.getString("year"));
-                out.println(result.getString("duration_minutes"));
-                out.println(result.getString("genre"));
-
-                //add Update and Delete form
-
+        //we make sure the connection is enstablished
+        if (connection != null) {
+            try {
+                //
+                Statement stmt = connection.createStatement();
+                ResultSet result = stmt.executeQuery(query);
+                out.println("Movie catalogue:");
                 out.println("<br>");
 
-                //add Create form
+                //Print items in database
+                while (result.next()) {
+                    //| id | title | director | year | duration_minutes | genre |
+                    out.println(result.getString("id"));
+                    out.println(result.getString("title"));
+                    out.println(result.getString("director"));
+                    out.println(result.getString("year"));
+                    out.println(result.getString("duration_minutes"));
+                    out.println(result.getString("genre"));
+
+                    //add Update and Delete form
+
+                    out.println("<br>");
+
+                    //add Create form
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } else {
+            out.println("Connection failed");
+            out.println("<br>");
         }
-
     }
 }
