@@ -10,7 +10,7 @@ import jakarta.servlet.http.*;
 @WebServlet(urlPatterns = "/MovieCatalogue")
 public class MovieCatalogue extends HttpServlet {
     //Class constant
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
     //myDatabase is my database in use
     //change that to your used database
     //user = <myusername>
