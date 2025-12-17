@@ -58,6 +58,8 @@ public class MovieCatalogue extends HttpServlet {
                 //
                 Statement stmt = connection.createStatement();
                 ResultSet result = stmt.executeQuery(query);
+                query = " ";
+
                 out.println("Movie catalogue:");
                 out.println("<br>");
 
@@ -72,6 +74,11 @@ public class MovieCatalogue extends HttpServlet {
                     out.println(result.getString("genre"));
 
                     //add Update and Delete form
+                    //Update
+                    out.println("""
+                        <form action = 'MovieCatalogue' method = 'post'>""" +
+                        "<input type = 'hidden' name = 'id' value = '" + result.getString("id") + "'>" +
+                        "<input type = 'submit' name = 'action' value = 'update'> </form>");
 
                     out.println("<br>");
                 }
@@ -131,6 +138,7 @@ public class MovieCatalogue extends HttpServlet {
                     try {
                         Statement stmt = connection.createStatement();
                         ResultSet result = stmt.executeQuery(query);
+                        query = " ";
                         
                         out.println("New item added successfully!");
                         out.println("<br>");
@@ -143,6 +151,44 @@ public class MovieCatalogue extends HttpServlet {
                     break;
                 
                 case "update":
+                    int receivedId = Integer.parseInt(request.getParameter("id"));
+                    out.println("Item to be updated: " + receivedId + " <br>");
+                    out.println("<form action = 'MovieCatalogue' method = 'post'>");
+                    out.println("<input type = 'text' name = 'title' placeholder = 'title' required>");
+                    out.println("<input type = 'text' name = 'director' placeholder = 'director' required>");
+                    out.println("<input type = 'text' name = 'year' placeholder = 'year' required>");
+                    out.println("<input type = 'text' name = 'duration_minutes' placeholder = 'duration' required>");
+                    out.println("<input type = 'text' name = 'genre' placeholder = 'genre' required>");
+                    out.println("<input type = 'submit' name = 'action' value = 'confirmUpdate'>");
+                    out.println("</form>");
+                    break;
+                
+                case "confirmUpdate":
+                    int uid = Integer.parseInt(request.getParameter("id"));
+                    String utitle = request.getParameter("title");
+                    String udirector = request.getParameter("director");
+                    int uyear = Integer.parseInt(request.getParameter("year"));
+                    int uduration = Integer.parseInt("duration_minutes");
+                    String ugenre = request.getParameter("genre");
+
+                    query = "UPDATE movies SET title = '"+ utitle +" ' "
+                    + "director = '"+ udirector +" ' "
+                    + "year = '"+ uyear +" ' "
+                    + "duration_minutes = '"+ uduration +" ' "
+                    + "genre = '"+ ugenre +" ' "
+                    + "WHERE id = '" + uid + " ';";
+
+                    try {
+                        Statement stmt = connection.createStatement();
+                        ResultSet res = stmt.executeQuery(query);
+                        query = " ";
+
+                        out.println("Item with id " + uid + " has been updated successfully");
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
                     break;
 
                 case "delete":
