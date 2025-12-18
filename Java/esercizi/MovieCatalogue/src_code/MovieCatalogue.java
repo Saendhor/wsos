@@ -154,6 +154,7 @@ public class MovieCatalogue extends HttpServlet {
                     int receivedId = Integer.parseInt(request.getParameter("id"));
                     out.println("Item to be updated: " + receivedId + " <br>");
                     out.println("<form action = 'MovieCatalogue' method = 'post'>");
+                    out.println("<input type = 'hidden' name = 'id' value = '"+ receivedId +"'>");
                     out.println("<input type = 'text' name = 'title' placeholder = 'title' required>");
                     out.println("<input type = 'text' name = 'director' placeholder = 'director' required>");
                     out.println("<input type = 'text' name = 'year' placeholder = 'year' required>");
@@ -168,23 +169,28 @@ public class MovieCatalogue extends HttpServlet {
                     String utitle = request.getParameter("title");
                     String udirector = request.getParameter("director");
                     int uyear = Integer.parseInt(request.getParameter("year"));
-                    int uduration = Integer.parseInt("duration_minutes");
+                    int uduration = Integer.parseInt(request.getParameter("duration_minutes"));
                     String ugenre = request.getParameter("genre");
 
-                    query = "UPDATE movies SET title = '"+ utitle +" ' "
-                    + "director = '"+ udirector +" ' "
-                    + "year = '"+ uyear +" ' "
-                    + "duration_minutes = '"+ uduration +" ' "
-                    + "genre = '"+ ugenre +" ' "
-                    + "WHERE id = '" + uid + " ';";
+                    out.println("Updating item with id = " + uid + " with parameters <br>");
+                    out.println(utitle + ", " + udirector + ", " + uyear + ", " + uduration + ", " + ugenre + "<br>");
+
+                    //"UPDATE movies SET title='"+title+"',director='"+director+"',year='"+year+"',duration_minutes='"+duration_minutes+"',genre='"+genre+"' WHERE id="+ID;
+                    query = "UPDATE movies SET title='"+ utitle +"'"
+                    + ",director='"+ udirector +"'"
+                    + ",year='"+ uyear +"'"
+                    + ",duration_minutes='"+ uduration +"'"
+                    + ",genre='"+ ugenre +"'"
+                    + "WHERE id ='" + uid + "';";
 
                     try {
                         Statement stmt = connection.createStatement();
-                        ResultSet res = stmt.executeQuery(query);
-                        query = " ";
+                        ResultSet result = stmt.executeQuery(query);
 
                         out.println("Item with id " + uid + " has been updated successfully");
+                        query = " ";
 
+                        out.println("<a href = /MovieCatalogue> Torna alla homepage</a>");
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
