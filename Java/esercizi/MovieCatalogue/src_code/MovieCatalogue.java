@@ -80,6 +80,11 @@ public class MovieCatalogue extends HttpServlet {
                         "<input type = 'hidden' name = 'id' value = '" + result.getString("id") + "'>" +
                         "<input type = 'submit' name = 'action' value = 'update'> </form>");
 
+                    out.println("""
+                        <form action = 'MovieCatalogue' method = 'post'>""" +
+                        "<input type = 'hidden' name = 'id' value = '" + result.getString("id") + "'>" +
+                        "<input type = 'submit' name = 'action' value = 'delete'> </form>");
+
                     out.println("<br>");
                 }
 
@@ -186,9 +191,9 @@ public class MovieCatalogue extends HttpServlet {
                     try {
                         Statement stmt = connection.createStatement();
                         ResultSet result = stmt.executeQuery(query);
+                        query = " ";
 
                         out.println("Item with id " + uid + " has been updated successfully");
-                        query = " ";
 
                         out.println("<a href = /MovieCatalogue> Torna alla homepage</a>");
                     } catch (SQLException e) {
@@ -198,6 +203,22 @@ public class MovieCatalogue extends HttpServlet {
                     break;
 
                 case "delete":
+                    int toDeleteId = Integer.parseInt(request.getParameter("id"));
+                    out.println("Item to be deleted: " + toDeleteId + " <br>");
+
+                    query = "DELETE FROM movies WHERE id = '" + toDeleteId + "';";
+
+                    try {
+                        Statement stmt = connection.createStatement();
+                        ResultSet result = stmt.executeQuery(query);
+                        query = " ";
+
+                        out.println("Item deleted <br>");
+                        out.println("<a href = /MovieCatalogue>Torna alla homepage</a>");
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 
                 default:
