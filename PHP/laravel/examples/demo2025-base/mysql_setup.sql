@@ -1,0 +1,8 @@
+DROP USER IF EXISTS "tsdw"@"localhost";
+CREATE USER "tsdw"@"localhost" IDENTIFIED BY "tsdw";
+
+GRANT ALL PRIVILEGES ON *.* TO "tsdw"@"localhost";
+FLUSH PRIVILEGES;
+
+DROP DATABASE IF EXISTS demo;
+CREATE DATABASE IF NOT EXISTS demo;
