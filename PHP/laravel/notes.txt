@@ -1,0 +1,35 @@
+#Block 1
+#command to generate a new Laravel app
+laravel new <app_name> -n
+
+#alternative using composer
+composer create-project laravel/laravel your-project-name --prefer-dist
+
+#start the laravel app (must be in the app folder)
+php artisan serve
+
+#Block 2
+view quindi blade
+utilizzo di layout.blade.php ad esempio
+
+#BLock 3
+multiple parameters to the view
+
+#Block 4
+Controller! (Amen)
+
+php artisan make:controller <controller-name>
+
+#Block 5
+config for db
+
+#modello conciso
+php artisan migrate
+php artisan make:migration create_names*_table
+oss: il nome deve essere il nome della tabella ed è fondamentale che sia al plurale, nello specifico con la s, tutto minuscolo
+
+php artisan make:model Name
+oss: il nome deve essere il nome della tabella al singolare, con l'iniziale maiuscola
+
+#simplify?
+php artisan make:model -rcm
