@@ -17,6 +17,10 @@ return new class extends Migration
             $table->integer('priority');
             $table->timestamps();
         });
+
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->foreignId('project_id')->constrained('projects')->onUpdate('cascade')->onDelete('cascade');
+        });
     }
 
     /**

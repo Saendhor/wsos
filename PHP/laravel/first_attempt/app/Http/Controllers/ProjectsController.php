@@ -36,7 +36,11 @@ class ProjectsController extends Controller {
     }
 
     public function destroy(Project $project) {
-        $project->delete();
+        $project->delete($project->id);
         return redirect('/projects');
+    }
+
+    public function show(Project $project) {
+        return view("projects.show", compact("project"));
     }
 }

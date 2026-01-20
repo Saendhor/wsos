@@ -9,7 +9,11 @@
     @foreach ($projects as $proj)
         {{$proj->id}}, {{$proj->name}}, {{$proj->team}}, {{$proj->start_year}}
         <form action="/projects/{{$proj->id}}/edit">
-        <input type="submit" value="edit">
+            <input type="submit" value="edit">
+        </form>
+
+        <form action="/projects/{{$proj->id}}">
+            <input type="submit" value="show">
         </form>
     <br>
 @endforeach

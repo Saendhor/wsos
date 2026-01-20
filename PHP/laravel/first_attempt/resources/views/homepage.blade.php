@@ -9,5 +9,6 @@
 Welcome to the homepage!<br>
 I'm making sure the contents are properly displayed :3 <br>
 <br>
-Read the list of projects <a href="/projects">here</a><br>
+Read the list of <i>projects</i> <a href="/projects">here</a><br>
+Read the list of <i>tasks</i> <a href="/tasks">here</a><br>
 @endsection
