@@ -5,4 +5,4 @@
 
 The following repo contains everything that has been used to pass the exam(s).<br>
 
-Take this repository as a *friend's tip* and not as a full replacement of the lessons. 
+Take this repository as a *friend's tip* and not as a full replacement for the lessons. 
