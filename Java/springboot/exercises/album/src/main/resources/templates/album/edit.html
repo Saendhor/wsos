@@ -1,0 +1,16 @@
+<html lang = "en" xmlns = "http://www.thymeleaf.org">
+    <head>
+        <title>Edit album</title>
+    </head>
+
+    <body>
+        <h1>Edit album</h1>
+        <form th:action = "@{/album}" th:object = "${album}" method = "post">
+            <input type = "text" name = "id" th:field = "*{id}" readonly>
+            <input type = "text" name = "name" th:field = "*{name}">
+            <input type = "submit" value = "submit">
+        </form>
+        <br>
+        <a th:href = "@{/album}">Back to list</a>
+    </body>
+</html>
